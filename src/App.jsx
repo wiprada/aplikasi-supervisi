@@ -79,14 +79,16 @@ export default function App() {
     let projectToSave = JSON.parse(JSON.stringify(project)); // Deep copy
 
     // Filter notes based on exclusive user selection
-    const filteredNotes = projectToSave.notes.map(note => {
-      const items = note.items.filter(item => {
-        if (includePT) return item.author === 'PT';
-        if (includeKT) return item.author === 'KT';
-        return false;
-      });
-      return { ...note, items };
-    }).filter(note => note.items.length > 0); // Remove notes with no items after filtering
+    const filteredNotes = projectToSave.notes.filter(note => {
+      if (includePT) return note.content && note.content.trim() !== '';
+      if (includeKT) return note.followUp && note.followUp.trim() !== '';
+      return true;
+    }).map(note => {
+      const n = { ...note };
+      if (includePT) n.followUp = '';
+      if (includeKT) n.content = n.content || '(Tanpa Catatan)';
+      return n;
+    });
 
     projectToSave.notes = filteredNotes;
 

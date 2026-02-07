@@ -41,7 +41,7 @@ export default function LandingView({ onNewProject, onOpenFile }) {
               </button>
             </div>
           </div>
-          <p className="mt-8 text-xs text-slate-400">Versi 2.0 Penambahan Fitur Todo ke KT</p>
+          <p className="mt-8 text-xs text-slate-400">Versi 2.1 Penambahan Fitur Ceklist Reviu HP3</p>
         </div>
       </div>
   );

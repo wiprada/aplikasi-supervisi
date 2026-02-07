@@ -207,11 +207,11 @@ export default function ExecutionTab({ project, setProject, csvInputRef, handleI
                                     onClick={() => setExpandedProc(expandedProc === proc.id ? null : proc.id)}
                                     className={`p-4 cursor-pointer flex justify-between items-center ${expandedProc === proc.id ? 'bg-slate-50' : 'bg-white'}`}
                                 >
-                                    <div className="flex items-center gap-3 w-full overflow-hidden">
+                                    <div className="flex items-center gap-3 w-full">
                                         <div className={`p-2 rounded-full flex-shrink-0 ${pendingCount > 0 ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-500'}`}>
                                             {expandedProc === proc.id ? <ChevronDown size={20}/> : <ChevronRight size={20}/>}
                                         </div>
-                                        <span className="font-medium text-slate-800 text-sm md:text-base truncate">{proc.name}</span>
+                                        <span className="font-medium text-slate-800 text-sm md:text-base">{proc.name}</span>
                                     </div>
                                     <div className="flex items-center gap-3 flex-shrink-0 ml-2">
                                         {pendingCount > 0 && (

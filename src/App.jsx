@@ -7,7 +7,8 @@ import {
   CheckCircle, 
   Maximize2,
   MessageSquare,
-  Menu
+  Menu,
+  ClipboardCheck
 } from 'lucide-react';
 import { DEFAULT_PROCEDURES, EMPTY_PROJECT } from './data/constants';
 import { generateId, parseCSV } from './utils/helpers';
@@ -17,6 +18,7 @@ import ProjectInfoTab from './components/ProjectInfoTab';
 import PlanTab from './components/PlanTab';
 import ExecutionTab from './components/ExecutionTab';
 import ChatTab from './components/ChatTab';
+import ChecklistTab from './components/ChecklistTab';
 import SaveModal from './components/SaveModal';
 
 export default function App() {
@@ -50,6 +52,9 @@ export default function App() {
           }
           if (!loadedData.chat) {
             loadedData.chat = [];
+          }
+          if (!loadedData.checklist) {
+            loadedData.checklist = {};
           }
           setProject(loadedData);
           // Load save status from file if it exists
@@ -276,6 +281,12 @@ export default function App() {
             icon={<MessageSquare size={18} />} 
             label="Diskusi Tim" 
           />
+          <NavButton 
+            active={activeTab === 'checklist'} 
+            onClick={() => { setActiveTab('checklist'); setMobileMenuOpen(false); }} 
+            icon={<ClipboardCheck size={18} />} 
+            label="Checklist Reviu" 
+          />
         </nav>
 
         <div className="p-4 border-t border-slate-700 space-y-3 pb-8 md:pb-4">
@@ -308,6 +319,7 @@ export default function App() {
               {activeTab === 'plan' && 'Rencana Supervisi'}
               {activeTab === 'execution' && 'Pelaksanaan Supervisi'}
               {activeTab === 'chat' && 'Diskusi Tim'}
+              {activeTab === 'checklist' && 'Checklist Reviu HP3'}
             </h2>
             <p className="text-slate-500 text-xs md:text-sm mt-1 truncate max-w-[300px] md:max-w-full">
               {project.meta.entityName ? `Entitas: ${project.meta.entityName}` : 'Lengkapi data entitas terlebih dahulu'}
@@ -333,6 +345,7 @@ export default function App() {
             />
           )}
           {activeTab === 'chat' && <ChatTab chatData={project.chat} onUpdateChat={handleUpdateChat} />}
+          {activeTab === 'checklist' && <ChecklistTab project={project} setProject={setProject} />}
         </div>
       </main>
       

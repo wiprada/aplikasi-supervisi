@@ -86,6 +86,60 @@ export const DEFAULT_PROCEDURES = [
   { id: 'def-5', category: '5. Regulasi', name: 'Telaah kepatuhan penyusunan Laporan Keuangan terhadap SAP' },
 ];
 
+// Checklist Reviu HP3 dan Cover Sheet untuk Pengendali Teknis
+export const CHECKLIST_ITEMS = [
+  {
+    id: 'A',
+    section: 'A. Reviu Kelengkapan dan Administrasi',
+    items: [
+      { id: 'A1', text: 'Apakah Cover Sheet dan HP3 tersedia secara fisik atau elektronis (e-KKP) dan telah diisi oleh Ketua Tim/Anggota Tim?' },
+      { id: 'A2', text: 'Apakah identitas penugasan (Nama Objek, Tahun Anggaran, Kode KKP) pada Cover Sheet sudah benar?' },
+      { id: 'A3', text: 'Apakah terdapat sistem referensi silang (cross-reference) yang jelas antara Cover Sheet, HP3, dan bukti pendukung dalam KKP?' },
+      { id: 'A4', text: 'Apakah Cover Sheet dapat ditelusuri dengan mudah ke KKP pendukung yang relevan?' },
+    ]
+  },
+  {
+    id: 'B',
+    section: 'B. Reviu Kesesuaian dengan Program Pemeriksaan (P2)',
+    items: [
+      { id: 'B5', text: 'Apakah seluruh langkah prosedur yang direncanakan dalam Program Pemeriksaan (P2) telah dituangkan dalam HP3?' },
+      { id: 'B6', text: 'Apakah setiap langkah prosedur dalam HP3 telah dilaksanakan?' },
+      { id: 'B7', text: 'Jika terdapat prosedur yang tidak dilaksanakan atau dimodifikasi, apakah telah didukung oleh alasan/justifikasi yang memadai dan didokumentasikan dalam HP3?' },
+      { id: 'B8', text: 'Apakah perubahan atau penambahan prosedur (jika ada) telah mendapatkan persetujuan (dari PT atau PM)?' },
+    ]
+  },
+  {
+    id: 'C',
+    section: 'C. Reviu Substansi Hasil Pelaksanaan Prosedur (HP3)',
+    items: [
+      { id: 'C9', text: 'Apakah bukti pemeriksaan yang dikumpulkan dan dilampirkan dalam KKP sudah cukup dan tepat (relevan, kompeten) untuk mendukung simpulan di HP3?' },
+      { id: 'C10', text: 'Apakah analisis/penjelasan hasil pemeriksaan dalam HP3 menjawab tujuan dari prosedur yang dilakukan?' },
+      { id: 'C11', text: 'Apakah terdapat kebenaran matematis dan akurasi angka pada data yang disajikan dalam HP3 (misal: penjumlahan, perkalian tarif)?' },
+      { id: 'C12', text: 'Apakah validitas substansi transaksi yang diuji telah diverifikasi (misal: keaslian bukti, konfirmasi pihak ketiga)?' },
+      { id: 'C13', text: 'Apakah simpulan per prosedur dalam HP3 logis dan didukung oleh bukti yang ada?' },
+    ]
+  },
+  {
+    id: 'D',
+    section: 'D. Reviu Cover Sheet (Simpulan Umum)',
+    items: [
+      { id: 'D14', text: 'Apakah deskripsi hasil pemeriksaan pada Cover Sheet menggambarkan ikhtisar yang akurat dari detail di HP3?' },
+      { id: 'D15', text: 'Apakah simpulan akhir pada Cover Sheet konsisten dengan temuan atau hasil analisis yang ada di HP3?' },
+      { id: 'D16', text: 'Apakah informasi pada Cover Sheet telah diverifikasi kebenarannya oleh Ketua Tim sebelum diserahkan ke PT?' },
+    ]
+  },
+  {
+    id: 'E',
+    section: 'E. Identifikasi Temuan dan Risiko (Quality Control)',
+    items: [
+      { id: 'E17', text: 'Jika hasil prosedur menunjukkan adanya penyimpangan, apakah konsep Temuan Pemeriksaan telah memenuhi unsur Kondisi, Kriteria, Sebab, dan Akibat?' },
+      { id: 'E18', text: 'Apakah penggunaan bahasa dalam narasi HP3 dan Cover Sheet sudah sesuai ketentuan (baku, jelas, tidak ambigu)?' },
+      { id: 'E19', text: 'Apakah terdapat indikasi kerugian negara/unsur pidana? Jika ya, apakah sudah didiskusikan kelayakannya dengan Pengendali Mutu?' },
+      { id: 'E20', text: 'Apakah terdapat temuan yang dinilai tidak layak? Jika ya, apakah alasan ketidaklayakan (misal: bukti lemah) sudah didokumentasikan?' },
+    ]
+  }
+];
+
 export const EMPTY_PROJECT = {
   meta: {
     auditName: '',
@@ -98,5 +152,6 @@ export const EMPTY_PROJECT = {
   plans: [], 
   notes: [],
   chat: [],
+  checklist: {}, // Object to store checklist answers: { itemId: { answer: 'ya'|'tidak'|null, note: '' } }
   procedures: DEFAULT_PROCEDURES
 };

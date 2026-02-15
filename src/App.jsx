@@ -8,7 +8,8 @@ import {
   Maximize2,
   MessageSquare,
   Menu,
-  ClipboardCheck
+  ClipboardCheck,
+  FileClock
 } from 'lucide-react';
 import { DEFAULT_PROCEDURES, EMPTY_PROJECT } from './data/constants';
 import { generateId, parseCSV } from './utils/helpers';
@@ -19,6 +20,7 @@ import PlanTab from './components/PlanTab';
 import ExecutionTab from './components/ExecutionTab';
 import ChatTab from './components/ChatTab';
 import ChecklistTab from './components/ChecklistTab';
+import BiWeeklyReportTab from './components/BiWeeklyReportTab';
 import SaveModal from './components/SaveModal';
 
 export default function App() {
@@ -55,6 +57,28 @@ export default function App() {
           }
           if (!loadedData.checklist) {
             loadedData.checklist = {};
+          }
+          if (!loadedData.biWeeklyReport) {
+            loadedData.biWeeklyReport = {
+              startDate: '',
+              endDate: '',
+              realizationSummary: '',
+              realizationPercentage: 0,
+              deviationList: '',
+              deviationReason: '',
+              communicationMeeting: '',
+              communicationMaterial: '',
+              communicationResponse: '',
+              objectiveEvaluation: '',
+              evidenceSufficiency: '',
+              complianceStandard: '',
+              complianceEthics: '',
+              significantIssues: '',
+              technicalSuggestions: '',
+              requestedDirection: '',
+              createdDate: new Date().toISOString().split('T')[0],
+              author: ''
+            };
           }
           setProject(loadedData);
           // Load save status from file if it exists
@@ -287,6 +311,12 @@ export default function App() {
             icon={<ClipboardCheck size={18} />} 
             label="Checklist Reviu" 
           />
+          <NavButton 
+            active={activeTab === 'report'} 
+            onClick={() => { setActiveTab('report'); setMobileMenuOpen(false); }} 
+            icon={<FileClock size={18} />} 
+            label="Laporan 2 Mingguan" 
+          />
         </nav>
 
         <div className="p-4 border-t border-slate-700 space-y-3 pb-8 md:pb-4">
@@ -320,6 +350,7 @@ export default function App() {
               {activeTab === 'execution' && 'Pelaksanaan Supervisi'}
               {activeTab === 'chat' && 'Diskusi Tim'}
               {activeTab === 'checklist' && 'Checklist Reviu HP3'}
+              {activeTab === 'report' && 'Laporan Dua Mingguan'}
             </h2>
             <p className="text-slate-500 text-xs md:text-sm mt-1 truncate max-w-[300px] md:max-w-full">
               {project.meta.entityName ? `Entitas: ${project.meta.entityName}` : 'Lengkapi data entitas terlebih dahulu'}
@@ -346,6 +377,12 @@ export default function App() {
           )}
           {activeTab === 'chat' && <ChatTab chatData={project.chat} onUpdateChat={handleUpdateChat} />}
           {activeTab === 'checklist' && <ChecklistTab project={project} setProject={setProject} />}
+          {activeTab === 'report' && (
+            <BiWeeklyReportTab 
+              project={project} 
+              onUpdate={(newData) => setProject(prev => ({ ...prev, biWeeklyReport: newData }))} 
+            />
+          )}
         </div>
       </main>
       

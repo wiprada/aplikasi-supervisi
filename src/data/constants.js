@@ -153,5 +153,25 @@ export const EMPTY_PROJECT = {
   notes: [],
   chat: [],
   checklist: {}, // Object to store checklist answers: { itemId: { answer: 'ya'|'tidak'|null, note: '' } }
+  biWeeklyReport: {
+    startDate: '',
+    endDate: '',
+    realizationSummary: '',
+    realizationPercentage: 0,
+    deviationList: '',
+    deviationReason: '',
+    communicationMeeting: '',
+    communicationMaterial: '',
+    communicationResponse: '',
+    objectiveEvaluation: '',
+    evidenceSufficiency: '',
+    complianceStandard: '',
+    complianceEthics: '',
+    significantIssues: '',
+    technicalSuggestions: '',
+    requestedDirection: '',
+    createdDate: new Date().toISOString().split('T')[0],
+    author: ''
+  },
   procedures: DEFAULT_PROCEDURES
 };

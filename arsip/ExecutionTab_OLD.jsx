@@ -82,7 +82,6 @@ export default function ExecutionTab({ project, setProject, csvInputRef, handleI
 
     let html = `
       <h2 style="text-align:center">CATATAN HASIL SUPERVISI</h2>
-      <br />
       <p><b>Entitas:</b> ${project.meta.entityName}<br/>
       <b>Pengendali Teknis:</b> ${project.meta.dalnisName}<br/>
       <b>Status:</b> ${new Date().toLocaleDateString('id-ID')}</p>
@@ -92,6 +91,8 @@ export default function ExecutionTab({ project, setProject, csvInputRef, handleI
             <th style="padding: 8px;">No</th>
             <th style="padding: 8px;">Prosedur & Fokus PT</th>
             <th style="padding: 8px;">Catatan Dalnis</th>
+            <th style="padding: 8px;">Status</th>
+            <th style="padding: 8px;">Tindak Lanjut Ketua Tim</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +108,10 @@ export default function ExecutionTab({ project, setProject, csvInputRef, handleI
                   <td style="padding: 8px; text-align: center;">${counter++}</td>
                   <td style="padding: 8px;">${nIndex === 0 ? `<b>${proc.category}</b><br/>${proc.name}` : ''}</td>
                   <td style="padding: 8px;">${note.content}</td>
+                  <td style="padding: 8px; text-align: center; color: ${note.status === 'resolved' ? 'green' : 'red'}">
+                    ${note.status === 'resolved' ? 'SELESAI' : 'PENDING'}
+                  </td>
+                  <td style="padding: 8px;">${note.followUp || '-'}</td>
                 </tr>`;
             });
         }

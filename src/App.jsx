@@ -107,22 +107,8 @@ export default function App() {
     const { includePT, includeKT } = options;
     let projectToSave = JSON.parse(JSON.stringify(project)); // Deep copy
 
-    // Filter notes based on exclusive user selection
-    const filteredNotes = projectToSave.notes.filter(note => {
-      if (includePT) return note.content && note.content.trim() !== '';
-      if (includeKT) return note.followUp && note.followUp.trim() !== '';
-      return true;
-    }).map(note => {
-      const n = { ...note };
-      if (includePT) n.followUp = '';
-      if (includeKT) n.content = n.content || '(Tanpa Catatan)';
-      return n;
-    });
-
-    projectToSave.notes = filteredNotes;
-
     // Create and add save status to the project data
-    const saveType = includePT ? 'Catatan PT' : 'Respon KT';
+    const saveType = includePT ? 'Disimpan oleh PT' : 'Disimpan oleh KT';
     const newSaveStatus = { date: new Date().toISOString(), type: saveType };
     projectToSave.lastSaveInfo = newSaveStatus;
 

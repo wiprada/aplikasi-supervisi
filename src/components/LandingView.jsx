@@ -41,7 +41,7 @@ export default function LandingView({ onNewProject, onOpenFile }) {
               </button>
             </div>
           </div>
-          <p className="mt-8 text-xs text-slate-400">Versi 2.2 Penambahan Fitur Laporan Dua Mingguan</p>
+          <p className="mt-8 text-xs text-slate-400">Versi 2.3 Perbaikan Format Laporan Dua Mingguan</p>
         </div>
       </div>
   );
